@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  test-lint:
+    docker:
+      - image: circleci/node:8.11.3-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+          command: npm run lint

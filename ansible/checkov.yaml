@@ -1,0 +1,11 @@
+- name: Test playbook for Checkov
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Bad container
+      community.docker.docker_container:
+        name: bad-container
+        image: nginx:latest
+        env:
+          API_KEY: "hardcoded_api_key_12345"
+        state: started

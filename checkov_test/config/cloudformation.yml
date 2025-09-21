@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  ExampleBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'example-bucket-1234'
+      AccessControl: PublicRead   # Insecure: Bucket is publicly readable
+
+  ExampleInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: 'ami-0abcdef1234567890'
+      SecurityGroups:
+        - 'default'
+      KeyName: 'my-key-pair'  # Exposing SSH access (could be flagged)
+
+Outputs:
+  ExampleBucketName:
+    Value: !Ref ExampleBucket
+  ExampleInstanceID:
+    Value: !Ref ExampleInstance

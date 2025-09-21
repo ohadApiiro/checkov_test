@@ -1,0 +1,15 @@
+name: Insecure CI
+
+on: [push]
+
+jobs:
+  insecure_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run insecure script
+        run: |
+          echo "API_KEY=1234567890abcdef" >> $GITHUB_ENV
+          curl -X POST https://example.com/deploy --header "Authorization: Bearer $API_KEY"
